@@ -1,6 +1,7 @@
 name: Acquire activation file
 
-on: push
+on:
+  push: { branches: [activation] }
 
 jobs:
   requestManualActivationFile:
