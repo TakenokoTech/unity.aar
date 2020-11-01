@@ -25,7 +25,7 @@ namespace UniLib.Scripts.Editor
 
             // Summary
             var summary = buildReport.summary;
-            Debug.Log(summary);
+            Debug.Log(summary.options);
 
             // Result
             var result = summary.result;
