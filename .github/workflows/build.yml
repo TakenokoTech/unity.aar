@@ -27,13 +27,14 @@ jobs:
         unityVersion: 2019.4.13f1
         projectPath: unity
         targetPlatform: Android
+        buildsPath: unity/Build
     
     - name: Build unity
       run: |
         pwd
         ls -la
         ls -la unity
-        cd unity/build
+        cd unity/Build
         ../../android/gradlew build
     
     - name: Build android
