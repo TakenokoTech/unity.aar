@@ -31,9 +31,7 @@ jobs:
     
     - name: Build unity
       run: |
-        pwd
-        ls -la
-        ls -la unity
+        ls -la unity/Build
         cd unity/Build
         ../../android/gradlew build
     
