@@ -31,9 +31,9 @@ jobs:
     
     - name: Build unity
       run: |
-        ls -la unity/Build
-        cd unity/Build
-        ../../android/gradlew build
+        ls -la unity/Build/Android
+        cd unity/Build/Android
+        ../../../android/gradlew build
     
     - name: Build android
       run: |
