@@ -29,12 +29,18 @@ jobs:
         targetPlatform: Android
         buildsPath: unity/Build
         buildMethod: UniLib.Scripts.Editor.ExportLib.Build
+        
+    # Output
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Build
+        path: unity/Build
     
     - name: Build unity
       run: |
-        ls -la unity/Build
-        cd unity/Build
-        ../../android/gradlew build
+        ls -la unity/Build/Android
+        cd unity/Build/Android
+        ../../../android/gradlew build
     
     - name: Build android
       run: |
