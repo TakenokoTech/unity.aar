@@ -15,12 +15,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    # Checkout
     - uses: actions/checkout@v2
-      
+    
+    # Install Java
     - uses: actions/setup-java@v1
       with:
         java-version: 1.8
         
+    # Cache
+    - uses: actions/cache@v1.1.0
+      with:
+        path: unity/Library
+        key: Library
+        
+    # Build
     - name: Build project
       uses: webbertakken/unity-builder@v0.10
       with:
@@ -41,6 +51,7 @@ jobs:
 #         cd unity/Build/Android
 #         ../../../android/gradlew build
     
+    # APK
     - name: Build android
       run: |
         cd android
