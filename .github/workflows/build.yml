@@ -1,0 +1,64 @@
+name: CI-Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    # Checkout
+    - uses: actions/checkout@v2
+    
+    # Install Java
+    - uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+        
+    # Cache
+    - uses: actions/cache@v1.1.0
+      with:
+        path: unity/Library
+        key: Library
+        
+    # Build
+    - name: Build project
+      uses: webbertakken/unity-builder@v0.10
+      with:
+        unityVersion: 2019.4.13f1
+        projectPath: unity
+        targetPlatform: Android
+        buildsPath: unity/Build
+        
+    # Output
+    - uses: actions/upload-artifact@v1
+      with:
+        name: unity
+        path: unity/Build
+    
+#     - name: Build unity
+#       run: |
+#         ls -la unity/Build/Android
+#         cd unity/Build/Android
+#         ../../../android/gradlew build
+    
+    # APK
+    - name: Build android
+      run: |
+        cd android
+        ./gradlew build
+
+    # Output
+    - uses: actions/upload-artifact@v1
+      with:
+        name: android
+        path: android/build
