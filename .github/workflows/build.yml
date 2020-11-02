@@ -42,7 +42,7 @@ jobs:
     # Output
     - uses: actions/upload-artifact@v1
       with:
-        name: Build
+        name: unity
         path: unity/Build
     
 #     - name: Build unity
@@ -56,3 +56,9 @@ jobs:
       run: |
         cd android
         ./gradlew build
+
+    # Output
+    - uses: actions/upload-artifact@v1
+      with:
+        name: android
+        path: android/build
